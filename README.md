@@ -10,9 +10,9 @@ Users can changes the search settings to:
 1.	Ignore or match case
 2.	Ignore or match punctuation marks, whitespace characters, diacritics (Ex: “cafe” vs “café”), number variants, etc.
 3.	Detect up to three types of text obfuscation:
-    a.	Replacement of an alphanumeric character with a punctuation mark
-    b.	Insertion of arbitrary whitespace characters/punctuation marks 
-    c.	Replacement of a character with a similar-looking one
+    1.	Replacement of an alphanumeric character with a punctuation mark
+    2.	Insertion of arbitrary whitespace characters/punctuation marks 
+    3.	Replacement of a character with a similar-looking one
 4.	Search for only full-word matches, or both full-word and substring matches
 
 ## Search Methods
