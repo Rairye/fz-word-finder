@@ -31,17 +31,22 @@ except:
 def get_variant_names():
     return [name for name in variants.keys()]
 
-def download_variant(name):
+def download_variant(name, file_path = None):
+    if file_path == None:
+        file_path = os.path.dirname(os.path.abspath(__file__))
+        
     file_name = variants.get(name)
+    
     if file_name == None:
-        warnings.warn("Could not load {}. Reason: {}".format(name, "The filename does not exist."))
+        warnings.warn("Could not download {}. Reason: The filename does not exist.".format(name))
         return {}
+    
     else:
         try:
             response = requests.get(root + file_name)
             lines = response.text.splitlines()
 
-            with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), file_name), 'w', encoding='utf-8') as f:
+            with open(os.path.join(file_path, file_name), 'w', encoding='utf-8') as f:
                 for line in lines:
                     f.write(line + "\n")
             
@@ -50,14 +55,18 @@ def download_variant(name):
             warnings.warn("Could not download {}. Reason: {}".format(name, e))
             
     
-def download_variants():
+def download_variants(file_path = None):
     for variant in variants.values():
-        download_variant(variant)
+        download_variant(variant, file_path)
 
-def get_variant_dict(name, offline = True, reverse = False):
+def get_variant_dict(name, offline = True, reverse = False, file_path = None):
+    if file_path == None:
+        file_path = os.path.dirname(os.path.abspath(__file__))
+        
     file_name = variants.get(name)
+    
     if file_name == None:
-        warnings.warn("Could not load {}. Reason: {}".format(name, "The filename does not exist."))
+        warnings.warn("Could not load {}. Reason: The filename does not exist.".format(name))
         return {}
     else:
         variant_dict = {}
@@ -65,7 +74,7 @@ def get_variant_dict(name, offline = True, reverse = False):
         try:
 
             if offline == True:
-                f = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), file_name) , encoding='utf-8')
+                f = open(os.path.join(file_path, file_name) , encoding='utf-8')
 
             else:
                 response = requests.get(root + file_name)
@@ -117,12 +126,15 @@ def get_variant_dict(name, offline = True, reverse = False):
         
     return variant_dict
 
-def update_variant_list():
+def update_variant_list(file_path = None):
+    if file_path == None:
+        file_path = os.path.dirname(os.path.abspath(__file__))
+                                                 
     try:
         response = requests.get(root + "variants.json")
         text = response.text
 
-        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "variants.json"), 'w', encoding='utf-8') as f:
+        with open(os.path.join(file_path, "variants.json"), 'w', encoding='utf-8') as f:
             f.write(text)
 
         variants = json.loads(text)
