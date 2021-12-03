@@ -1,6 +1,10 @@
 # fz-word-finder
 Fuzzy match word finder. Supports multiple simultaneous target strings and fuzzy match rules. (No regex or normalization)
 
+## Installation
+
+pip install fz-word-finder
+
 ## Overview
 
 This package allows users to perform fuzzy-match searches of multiple target words simultaneously. It supports both space-delimited natural languages (such as English) and non-space-delimited natural languages (such as Japanese or Chinese). 
