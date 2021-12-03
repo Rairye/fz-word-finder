@@ -25,6 +25,12 @@ This package supports two types of search methods:
 1.	find_matches() -> This method finds both full-word and substring matches and returns them as a result
 2.	get_word_indices() -> This method returns the indices of all occurrences of words. By default, only full-word matches are returned, but both full-word and substring matches can be obtained if needed
 
+## Wiki
+
+The wiki (currently under construction) can be found at: 
+
+https://github.com/Rairye/fz-word-finder/wiki
+
 ## Quick Code Samples
 
 ### Default settings. Case is ignored.
