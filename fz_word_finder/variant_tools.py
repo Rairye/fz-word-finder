@@ -56,7 +56,7 @@ def download_variant(name, file_path = None):
             
     
 def download_variants(file_path = None):
-    for variant in variants.values():
+    for variant in variants.keys():
         download_variant(variant, file_path)
 
 def get_variant_dict(name, offline = True, reverse = False, file_path = None):
