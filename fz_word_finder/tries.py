@@ -70,22 +70,22 @@ class trie():
     def get_variant_dict(self):
         return self.variants
 
-    def delete_variant(variant):
+    def delete_variant(self, variant):
         if type(variant) != str:
             return
         else:
             try:
-                delete(self.variants[variant])
+                del(self.variants[variant])
             except:
                 pass
 
     def delete_variants(self, variants):
-        if type(variants) == dict:
+        if type(variants) == set or type(variants) == list:
             for variant in variants:
                 self.delete_variant(variant)
         else:
             if type(variants) == str:
-                self.delete_variant(variant)
+                self.delete_variant(variants)
 
 
     def add_target_words(self, target_words):

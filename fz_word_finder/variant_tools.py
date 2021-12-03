@@ -142,3 +142,16 @@ def update_variant_list(file_path = None):
     except Exception as e:
         warnings.warn("Could not download variants.json. Reason: {}".format(e))
 
+def open_online_variant_list():
+                                                 
+    try:
+        response = requests.get(root + "variants.json")
+        text = response.text
+
+        variants = json.loads(text)
+        
+    except Exception as e:
+        warnings.warn("Could not download variants.json. Reason: {}".format(e))
+
+
+

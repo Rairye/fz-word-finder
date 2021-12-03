@@ -52,7 +52,7 @@ class fz_finder():
     def set_ignore_punct(self, value):
         self.trie.set_ignore_punct(value)
 
-    def set_ignore_ws(self, value, search_nodes):
+    def set_ignore_ws(self, value):
         self.trie.set_ignore_ws(value)
     
     def has_key(self, key, ss_len, search_nodes, srm):
@@ -85,6 +85,10 @@ class fz_finder():
     def download_variants(self):
         tools = import_module("fz_word_finder.variant_tools")
         tools.download_variants()
+
+    def update_variant_list(self):
+        tools = import_module("fz_word_finder.variant_tools")
+        tools.update_variant_list()
 
     def find_matches(self, input_str, fast_search = True):
         results = {"full words" : [], "substrings" : []}
