@@ -240,6 +240,11 @@ for result in index_results.items():
     print("{} : {}".format(result[0], result[1]))
 ```
 
+## Variant Lists
+
+The raw forms of the variant lists can be found at the following repository:
+
+https://github.com/Rairye/variant_lists
 
 
 
