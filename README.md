@@ -198,7 +198,7 @@ my_finder.add_target_words(target_word)
 source_sentence = "I made an app for people who love apples."
 
 no_ss_index_results = my_finder.get_word_indices(source_sentence)
-ss_index_results = my_finder.get_word_indices(source_sentence, False)
+ss_index_results = my_finder.get_word_indices(source_sentence, whole_words_only = False)
 
 print("No substring results:")
 for result in no_ss_index_results.items():
@@ -250,7 +250,7 @@ source_sentence = "Tell me your e   m@il and t3*3ph0ne-ñumbér."
 
 match_results = my_finder.find_matches(source_sentence)
 
-index_results = my_finder.get_word_indices(source_sentence, False)
+index_results = my_finder.get_word_indices(source_sentence, whole_words_only = False)
 
 print("Match results:")
 for result in match_results.items():
