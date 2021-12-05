@@ -95,7 +95,7 @@ for result in index_results.items():
 print("\n\"{}\" has any target word -> {}".format(source_sentence, my_finder.has_any_target_word(source_sentence, whole_words_only = False)))
 ```
 
-### Whitespace and punctuation marks are ignored by the finder, except for target words that contain whitespace characters or punctuation marks.
+### Whitespace and punctuation marks are matched by the finder.
 
 ```python
 
@@ -124,7 +124,7 @@ for result in index_results.items():
 print("\n\"{}\" has any target word -> {}".format(source_sentence, my_finder.has_any_target_word(source_sentence, whole_words_only = False)))
 ```
 
-### Whitespace characters and punctuation marks are not mathed by the finder. This generates fuzzy matches if source_sentence contains a substring that is similar to a target word but differs by whitespace characters or punctuation marks.
+### Whitespace characters and punctuation marks are not matched by the finder. This generates fuzzy matches if source_sentence contains a substring that is similar to a target word but differs by whitespace characters or punctuation marks.
 
 ```python
 from fz_word_finder.finder import fz_finder
