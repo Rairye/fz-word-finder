@@ -114,7 +114,7 @@ for result in index_results.items():
     print("{} : {}".format(result[0], result[1]))
 ```
 
-### Whitespace and punctuation marks are not ignored by the finder. This generates fuzzy matches if source_sentence contains a substring that is similar to a target word but differs by whitespace characters or punctuation marks.
+### Whitespace and punctuation marks are not mathed by the finder. This generates fuzzy matches if source_sentence contains a substring that is similar to a target word but differs by whitespace characters or punctuation marks.
 
 ```python
 from fz_word_finder.finder import fz_finder
@@ -125,7 +125,7 @@ target_word = ["in house"]
 
 my_finder.add_target_words(target_word)
 
-my_finder.set_ignore_punct_ws(False)
+my_finder.set_match_punct_ws(False)
 
 source_sentence = "Our in-house team produces our products in house."
 
