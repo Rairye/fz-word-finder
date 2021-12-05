@@ -246,6 +246,31 @@ for result in index_results.items():
     print("{} : {}".format(result[0], result[1]))
 ```
 
+### #fast_search = True vs fast_search = False
+```python
+from fz_word_finder.finder import fz_finder
+
+my_finder = fz_finder()
+
+target_words = ["telephone", "number", "telephone number"]
+
+my_finder.add_target_words(target_words)
+
+source_sentence = "telephone number"
+
+fast_search_true = my_finder.find_matches(source_sentence)
+fast_search_false = my_finder.find_matches(source_sentence, fast_search = False)
+
+print("fast_search True:")
+for result in fast_search_true.items():
+    print("{} : {}".format(result[0], result[1]))
+
+print("\nfast_search False:")
+for result in fast_search_false.items():
+    print("{} : {}".format(result[0], result[1]))
+
+```
+
 ## Variant Lists
 
 The raw forms of the variant lists can be found at the following repository:
