@@ -278,11 +278,11 @@ source_sentence = "telephone number"
 fast_search_true = my_finder.find_matches(source_sentence)
 fast_search_false = my_finder.find_matches(source_sentence, fast_search = False)
 
-print("fast_search True:")
+print("fast_search = True:")
 for result in fast_search_true.items():
     print("{} : {}".format(result[0], result[1]))
 
-print("\nfast_search False:")
+print("\nfast_search = False:")
 for result in fast_search_false.items():
     print("{} : {}".format(result[0], result[1]))
 
