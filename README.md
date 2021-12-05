@@ -17,13 +17,13 @@ Users can changes the search settings to:
     1.	Replacement of an alphanumeric character with a punctuation mark
     2.	Insertion of arbitrary whitespace characters/punctuation marks 
     3.	Replacement of a character with a similar-looking one
-4.	Search for only full-word matches, or both full-word and substring matches
+4.	Search for only whole-word matches, or both whole-word and substring matches
 
 ## Search Methods
 
 This package supports two types of search methods:
-1.	find_matches() -> This method finds both full-word and substring matches and returns them as a result
-2.	get_word_indices() -> This method returns the indices of all occurrences of words. By default, only full-word matches are returned, but both full-word and substring matches can be obtained if needed
+1.	find_matches() -> This method finds both whole-word and substring matches and returns them as a result
+2.	get_word_indices() -> This method returns the indices of all occurrences of words. By default, only whole-word matches are returned, but both whole-word and substring matches can be obtained if needed
 
 ## Wiki
 
