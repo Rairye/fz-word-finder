@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 '''
 
-from fz_word_finder.helpers import *
+from fz_word_finder.helpers import is_supported_target_word_type, is_punct, is_alpha_numeric, generate_search_candidates
 
 class node():
     
@@ -45,8 +45,8 @@ class trie():
                 self.add(word)
 
         self.match_case = False
-        self.ignore_ws = True
-        self.ignore_punct = True
+        self.match_ws = True
+        self.match_punct = True
         self.use_punct_as_variant = False
         self.variants = {}
 
@@ -114,24 +114,24 @@ class trie():
         else:
             self.use_punct_as_variant = value
 
-    def set_ignore_punct_ws(self, value):
+    def set_match_punct_ws(self, value):
         if type(value) != bool:
             return
         else:
-            self.ignore_ws = value
-            self.ignore_punct = value
+            self.match_ws = value
+            self.match_punct = value
 
-    def set_ignore_punct(self, value):
+    def set_match_punct(self, value):
         if type(value) != bool:
             return
         else:
-            self.ignore_punct = value
+            self.match_punct = value
 
-    def set_ignore_ws(self, value):
+    def set_match_ws(self, value):
         if type(value) != bool:
             return
         else:
-            self.ignore_ws = value
+            self.match_ws = value
 
     def get_variants(self, char):
 
@@ -315,9 +315,9 @@ class trie():
                 for addition in additions:
                     current_chars.add(addition)
 
-            if self.ignore_punct == False or self.ignore_ws == False:
+            if self.match_punct == False or self.match_ws == False:
                 for char in self.trie_dict:
-                    if (char.isspace() and self.ignore_ws == False) or (is_punct(char) and self.ignore_punct == False):
+                    if (char.isspace() and self.match_ws == False) or (is_punct(char) and self.match_punct == False):
                         current_chars.append(char)
                 
             if len(current_chars) == 0:
@@ -361,7 +361,7 @@ class trie():
             else:
                 return False if srm.count() == 0 else srm.get_results()
 
-        elif not is_alpha_numeric(key) and (self.ignore_punct == True or self.ignore_ws == True):
+        elif not is_alpha_numeric(key) and (self.match_punct == True or self.match_ws == True):
 
         
             for node in search_nodes.nodes:
@@ -418,7 +418,7 @@ class trie():
                 for addition in additions:
                     current_chars.add(addition)
   
-            addable = lambda x: x in current_chars or (x.isspace() and self.ignore_ws == False) or (is_punct(x) and self.ignore_punct == False)
+            addable = lambda x: x in current_chars or (x.isspace() and self.match_ws == False) or (is_punct(x) and self.match_punct == False)
             
             for node in search_nodes.nodes:
                 

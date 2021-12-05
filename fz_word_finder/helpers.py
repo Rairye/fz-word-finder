@@ -28,12 +28,12 @@ def is_punct(char):
     if len(char) > 1 or char == "":
         return False
 
-    return (char.isalpha() or (char.isnumeric() or char.isspace())) == False
+    return (char.isalpha() or (char.isdigit() or char.isspace())) == False
 
 
 def is_alpha_numeric(char):
 
-    return char.isalpha() or char.isnumeric()
+    return char.isalpha() or char.isdigit()
 
 
 def generate_search_candidates(char):

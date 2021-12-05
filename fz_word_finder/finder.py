@@ -46,14 +46,14 @@ class fz_finder():
     def set_match_case(self, value):
         self.trie.set_match_case(value)
 
-    def set_ignore_punct_ws(self, value):
-        self.trie.set_ignore_punct_ws(value)
+    def set_match_punct_ws(self, value):
+        self.trie.set_match_punct_ws(value)
 
-    def set_ignore_punct(self, value):
-        self.trie.set_ignore_punct(value)
+    def set_match_punct(self, value):
+        self.trie.set_match_punct(value)
 
-    def set_ignore_ws(self, value):
-        self.trie.set_ignore_ws(value)
+    def set_match_ws(self, value):
+        self.trie.set_match_ws(value)
     
     def has_key(self, key, ss_len, search_nodes, srm):
         return self.trie.has_key(key, ss_len, search_nodes, srm)
@@ -76,22 +76,22 @@ class fz_finder():
     def get_target_words(self):
         return self.trie.get_target_words()
 
-    def load_default_variants(self, offline = True):
+    def load_default_variants(self, offline = True, file_path = None):
         tools = import_module("fz_word_finder.variant_tools")
 
         for name in tools.get_variant_names():
-            self.add_variants(tools.get_variant_dict(name, offline))
+            self.add_variants(tools.get_variant_dict(name, offline, file_path))
 
-    def download_variants(self):
+    def download_variants(self, file_path = None):
         tools = import_module("fz_word_finder.variant_tools")
-        tools.download_variants()
+        tools.download_variants(file_path)
 
-    def update_variant_list(self):
+    def update_variant_list(self, file_path = None):
         tools = import_module("fz_word_finder.variant_tools")
-        tools.update_variant_list()
+        tools.update_variant_list(file_path)
 
     def find_matches(self, input_str, fast_search = True):
-        results = {"full words" : [], "substrings" : []}
+        results = {"whole words" : [], "substrings" : []}
 
         if type(input_str) != str:
             return results
@@ -134,7 +134,7 @@ class fz_finder():
                                 else:
                                     end_word_boundary = True if end == str_len else True if not is_alpha_numeric(input_str[start + index]) else False
                                     if end_word_boundary:
-                                        results["full words"].append(result_dict)
+                                        results["whole words"].append(result_dict)
                                     else:
                                         results["substrings"].append(result_dict)
                                 
@@ -220,4 +220,62 @@ class fz_finder():
                 start+=1
 
 
-        return results    
+        return results
+
+
+    def has_any_target_word(self, input_str, whole_words_only = True):
+
+        if type(input_str) != str:
+            return False
+
+        start = 0
+        end = 0
+        index = 0
+        str_len = len(input_str)
+        ss_len = ss_len_manager()
+        search_nodes = search_nodes_manager()
+        srm = search_results_manager()
+        while  start <= len(input_str) - 1:
+            start_search = self.has_key(input_str[start], ss_len, search_nodes, srm)
+
+            if start_search:
+                end = start+1
+
+                while True:
+                    
+                    search_result = self.has_next_key(input_str[end], ss_len, search_nodes, srm) if  end <= str_len - 1 else srm.get_results()
+
+                    if search_result == True:
+                        end+=1
+
+                    else:
+                        if search_result == False:
+                            start+=1
+                            break
+                            
+                        else:
+                            
+                            start_word_boundary = True if start == 0 else True if not is_alpha_numeric(input_str[start-1]) else False
+
+                            for result in search_result:
+                                target_word = result[0]
+                                index = result[1]
+                                end_index = start + index
+                                substring = input_str[start: end_index]
+                                if start_word_boundary == False and whole_words_only == False:
+                                    return True
+                                            
+                                else:
+                                    end_word_boundary = True if end == str_len else True if not is_alpha_numeric(input_str[start + index]) else False
+                                    if end_word_boundary or whole_words_only == False:
+                                        return True
+  
+                            start+= index
+
+                        break
+
+            else:
+                start+=1
+
+
+        return False 
