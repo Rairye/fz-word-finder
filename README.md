@@ -30,7 +30,7 @@ This package supports three types of search methods:
 
 The wiki (currently under construction) can be found at: 
 
-https://github.com/Rairye/fz-word-finder/wiki
+https://github.com/Rairye/fz-word-finder/wiki/Contents
 
 ## Quick Code Samples
 
