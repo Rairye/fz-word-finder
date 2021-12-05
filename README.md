@@ -246,7 +246,7 @@ for result in index_results.items():
     print("{} : {}".format(result[0], result[1]))
 ```
 
-### #fast_search = True vs fast_search = False
+### fast_search = True vs fast_search = False
 ```python
 from fz_word_finder.finder import fz_finder
 
