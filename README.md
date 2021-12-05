@@ -21,9 +21,10 @@ Users can changes the search settings to:
 
 ## Search Methods
 
-This package supports two types of search methods:
+This package supports three types of search methods:
 1.	find_matches() -> This method finds both whole-word and substring matches and returns them as a result
 2.	get_word_indices() -> This method returns the indices of all occurrences of words. By default, only whole-word matches are returned, but both whole-word and substring matches can be obtained if needed
+3.	has_any_target_word() -> This method searches a string for target words. Returns True if the string contains any of the target words set in the finder. This is the fastest search method.
 
 ## Wiki
 
@@ -32,6 +33,8 @@ The wiki (currently under construction) can be found at:
 https://github.com/Rairye/fz-word-finder/wiki
 
 ## Quick Code Samples
+
+Note: In practice, you would only need to use one of the three search methods.
 
 ### Default settings. Case is ignored.
 
@@ -57,7 +60,10 @@ for result in match_results.items():
 print("\nIndex results:")
 for result in index_results.items():
     print("{} : {}".format(result[0], result[1]))
+    
+print("\n\"{}\" has any target word -> {}".format(source_sentence, my_finder.has_any_target_word(source_sentence, whole_words_only = False)))
 ```
+
 
 ### Case is matched.
 
@@ -85,6 +91,8 @@ for result in match_results.items():
 print("\nIndex results:")
 for result in index_results.items():
     print("{} : {}".format(result[0], result[1]))
+    
+print("\n\"{}\" has any target word -> {}".format(source_sentence, my_finder.has_any_target_word(source_sentence, whole_words_only = False)))
 ```
 
 ### Whitespace and punctuation marks are ignored by the finder, except for target words that contain whitespace characters or punctuation marks.
@@ -112,9 +120,11 @@ for result in match_results.items():
 print("\nIndex results:")
 for result in index_results.items():
     print("{} : {}".format(result[0], result[1]))
+    
+print("\n\"{}\" has any target word -> {}".format(source_sentence, my_finder.has_any_target_word(source_sentence, whole_words_only = False)))
 ```
 
-### Whitespace and punctuation marks are not mathed by the finder. This generates fuzzy matches if source_sentence contains a substring that is similar to a target word but differs by whitespace characters or punctuation marks.
+### Whitespace characters and punctuation marks are not mathed by the finder. This generates fuzzy matches if source_sentence contains a substring that is similar to a target word but differs by whitespace characters or punctuation marks.
 
 ```python
 from fz_word_finder.finder import fz_finder
@@ -140,6 +150,8 @@ for result in match_results.items():
 print("\nIndex results:")
 for result in index_results.items():
     print("{} : {}".format(result[0], result[1]))
+    
+print("\n\"{}\" has any target word -> {}".format(source_sentence, my_finder.has_any_target_word(source_sentence, whole_words_only = False)))
 ```
 
 ### Find words in which at least one alphanumeric character was replaced by a punctuation mark.
@@ -167,9 +179,12 @@ for result in match_results.items():
 
 print("\nIndex results:")
 for result in index_results.items():
-    print("{} : {}".format(result[0], result[1]))```
+    print("{} : {}".format(result[0], result[1]))
+    
+print("\n\"{}\" has any target word -> {}".format(source_sentence, my_finder.has_any_target_word(source_sentence, whole_words_only = False)))
+```
 
-### Include substrings.
+### Include substrings using get_word_indices().
 
 ```python
 from fz_word_finder.finder import fz_finder
@@ -244,6 +259,8 @@ for result in match_results.items():
 print("\nIndex results:")
 for result in index_results.items():
     print("{} : {}".format(result[0], result[1]))
+    
+print("\n\"{}\" has any target word -> {}".format(source_sentence, my_finder.has_any_target_word(source_sentence, whole_words_only = False)))
 ```
 
 ### fast_search = True vs fast_search = False
