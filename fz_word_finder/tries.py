@@ -367,7 +367,7 @@ class trie():
             for node in search_nodes.nodes:
                 for child in node.children.values():
                     if child.word_end:
-                        srm.add([child.word_end, ss_len.value])
+                        srm.add([child.target_word, ss_len.value])
 
                     if child.has_children:
                         new_nodes.append(child)
