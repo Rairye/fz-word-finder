@@ -1,6 +1,11 @@
 # fz-word-finder
 Fuzzy match word finder. Supports multiple simultaneous target strings and fuzzy match rules. (No regex or normalization) Supports so-called "confusable characters".
 
+## Applications
+
+1. To find keywords and their fuzzy matches in text for text mining, data analysis, etc.
+2. To perform detailed keyword-based moderation of online forums, chats, etc. 
+
 ## Installation
 
 pip install fz-word-finder
