@@ -81,11 +81,11 @@ class fz_finder():
     def get_target_words(self):
         return self.trie.get_target_words()
 
-    def load_default_variants(self, offline = True, reverse = False, file_path = None):
+    def load_default_variants(self, offline = True, mode = "", file_path = None):
         tools = import_module("fz_word_finder.variant_tools")
 
         for name in tools.get_variant_names():
-            self.add_variants(tools.get_variant_dict(name, offline, reverse, file_path))
+            self.add_variants(tools.get_variant_dict(name, offline, mode, file_path))
 
     def download_variants(self, file_path = None):
         tools = import_module("fz_word_finder.variant_tools")
