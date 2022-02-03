@@ -286,7 +286,7 @@ class fz_finder():
         return False 
 
 
-    def find_partial_matches(self, input_str, fast_search = True, partial_matches = False, partial_matches_fast_search = True):
+    def find_partial_matches(self, input_str, fast_search = True, partial_matches_fast_search = True):
         results = {"whole words" : [], "substrings" : [], "partial" : []}
 
         if type(input_str) != str:
