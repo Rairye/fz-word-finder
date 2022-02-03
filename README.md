@@ -27,9 +27,10 @@ Users can changes the search settings to:
 ## Search Methods
 
 This package supports three types of search methods:
-1.	find_matches() -> This method finds both whole-word and substring matches and returns them as a result
-2.	get_word_indices() -> This method returns the indices of all occurrences of words. By default, only whole-word matches are returned, but both whole-word and substring matches can be obtained if needed
+1.	find_matches() -> This method finds both whole-word and substring matches and returns them as a result.
+2.	get_word_indices() -> This method returns the indices of all occurrences of words. By default, only whole-word matches are returned, but both whole-word and substring matches can be obtained if needed.
 3.	has_any_target_word() -> This method searches a string for target words. Returns True if the string contains any of the target words set in the finder. This is the fastest search method.
+4.	find_partial_matches() -> This method finds whole-word matches, substring matches, and partial matches and returns them as a result.
 
 ## Wiki
 
